@@ -26,6 +26,10 @@ import java.util.List;
  */
 public class BooksListBindings {
 
+    private BooksListBindings() {
+
+    }
+
     @SuppressWarnings("unchecked")
     @BindingAdapter("app:items")
     public static void setItems(ListView listView, List<Book> items) {

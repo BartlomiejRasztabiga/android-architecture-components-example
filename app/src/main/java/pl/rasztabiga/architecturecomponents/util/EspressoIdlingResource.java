@@ -23,6 +23,10 @@ import android.support.test.espresso.IdlingResource;
  */
 public class EspressoIdlingResource {
 
+    private EspressoIdlingResource() {
+
+    }
+
     private static final String RESOURCE = "GLOBAL";
 
     private static SimpleCountingIdlingResource mCountingIdlingResource =

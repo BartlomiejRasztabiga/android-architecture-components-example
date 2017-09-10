@@ -15,7 +15,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 // TODO Implement this class using LiveData
 public class BooksRepository implements BooksDataSource {
 
-    private volatile static BooksRepository instance = null;
+    private static volatile BooksRepository instance = null;
 
     private final BooksDataSource mBooksRemoteDataSource;
 

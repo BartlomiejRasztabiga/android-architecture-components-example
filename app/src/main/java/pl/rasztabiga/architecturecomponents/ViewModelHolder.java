@@ -26,11 +26,9 @@ import android.support.v4.app.Fragment;
 /**
  * Non-UI Fragment used to retain ViewModels.
  */
-public class ViewModelHolder<VM> extends Fragment {
+public class ViewModelHolder<T> extends Fragment {
 
-    private VM mViewModel;
-
-    public ViewModelHolder() { }
+    private T mViewModel;
 
     public static <M> ViewModelHolder createContainer(@NonNull M viewModel) {
         ViewModelHolder<M> viewModelContainer = new ViewModelHolder<>();
@@ -45,11 +43,11 @@ public class ViewModelHolder<VM> extends Fragment {
     }
 
     @Nullable
-    public VM getViewmodel() {
+    public T getViewmodel() {
         return mViewModel;
     }
 
-    public void setViewModel(@NonNull VM viewModel) {
+    public void setViewModel(@NonNull T viewModel) {
         mViewModel = viewModel;
     }
 }

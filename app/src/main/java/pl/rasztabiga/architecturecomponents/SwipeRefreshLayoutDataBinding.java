@@ -23,6 +23,10 @@ import pl.rasztabiga.architecturecomponents.books.BooksViewModel;
 
 public class SwipeRefreshLayoutDataBinding {
 
+    private SwipeRefreshLayoutDataBinding() {
+
+    }
+
     /**
      * Reloads the data when the pull-to-refresh is triggered.
      * <p>
@@ -31,12 +35,7 @@ public class SwipeRefreshLayoutDataBinding {
     @BindingAdapter("android:onRefresh")
     public static void setSwipeRefreshLayoutOnRefreshListener(ScrollChildSwipeRefreshLayout view,
             final BooksViewModel viewModel) {
-        view.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                viewModel.loadBooks(true);
-            }
-        });
+        view.setOnRefreshListener(() -> viewModel.loadBooks(true));
     }
 
 }

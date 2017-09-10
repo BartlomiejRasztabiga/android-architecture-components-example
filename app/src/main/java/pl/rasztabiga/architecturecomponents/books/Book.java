@@ -4,7 +4,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.google.common.base.Objects;
-import com.google.common.base.Strings;
 
 //TODO Add lombok
 public final class Book {
