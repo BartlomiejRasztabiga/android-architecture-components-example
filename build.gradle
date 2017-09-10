@@ -1,29 +1,25 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    
     repositories {
         google()
         jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.0-beta5'
-        
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
+
 }
+
 
 allprojects {
     repositories {
         google()
         jcenter()
     }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
 }
 
 // Define versions in a single place
@@ -48,3 +44,21 @@ ext {
     // Architecture Components dependencies
     archLifecycleVersion = "1.0.0-alpha9"
 }
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+task sonarlint(type: Exec) {
+    commandLine 'cmd', '/c', 'run-sonar.bat'
+
+    //store the output instead of printing to the console:
+    standardOutput = new ByteArrayOutputStream()
+
+    //extension method stopTomcat.output() can be used to obtain the output:
+    ext.output = {
+        return standardOutput.toString()
+    }
+}
+
+
