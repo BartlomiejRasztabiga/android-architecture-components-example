@@ -7,11 +7,8 @@ import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableBoolean;
-import android.databinding.ObservableField;
 import android.databinding.ObservableList;
-import android.graphics.drawable.Drawable;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import pl.rasztabiga.architecturecomponents.R;
@@ -35,8 +32,6 @@ public class BooksViewModel extends AndroidViewModel {
     public final ObservableBoolean dataLoading = new ObservableBoolean(false);
 
     public final ObservableBoolean empty = new ObservableBoolean(false);
-
-    public final ObservableBoolean booksAddViewVisible = new ObservableBoolean();
 
     private final SnackbarMessage mSnackbarText = new SnackbarMessage();
 
@@ -100,6 +95,8 @@ public class BooksViewModel extends AndroidViewModel {
                     break;
                 case BookDetailActivity.DELETE_RESULT_OK:
                     mSnackbarText.setValue(R.string.successfully_deleted_book_message);
+                    break;
+                default:
                     break;
             }
         }

@@ -46,22 +46,6 @@
             android:orientation="vertical"
             android:visibility="@{viewmodel.empty ? View.VISIBLE : View.GONE}">
 
-
-            <ImageView
-                android:id="@+id/noBooksIcon"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center"
-                android:src="@{viewmodel.noBooksIconRes}" />
-
-            <TextView
-                android:id="@+id/noBooksMain"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@{viewmodel.noBooksLabel}"
-                android:layout_marginBottom="@dimen/list_item_padding"/>
-
             <TextView
                 android:id="@+id/noBooksAdd"
                 android:layout_width="wrap_content"
@@ -70,8 +54,7 @@
                 android:background="@drawable/touch_feedback"
                 android:gravity="center"
                 android:text="@string/no_books_add"
-                android:onClick="@{() -> viewmodel.addNewBook()}"
-                android:visibility="@{viewmodel.booksAddViewVisible ? View.VISIBLE : View.GONE}" />
+                android:onClick="@{() -> viewmodel.addNewBook()}" />
 
         </LinearLayout>
     </RelativeLayout>

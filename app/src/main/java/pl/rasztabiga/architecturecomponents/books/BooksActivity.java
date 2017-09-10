@@ -1,5 +1,6 @@
 package pl.rasztabiga.architecturecomponents.books;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,6 +34,18 @@ public class BooksActivity extends LifecycleAppCompatActivity implements BooksNa
         setupNavigationDrawer();
 
         setupViewFragment();
+
+        mViewModel = obtainViewModel(this);
+
+        // Subscribe to "open task" event
+        mViewModel.getOpenTaskEvent().observe(this, taskId -> {
+            if (taskId != null) {
+                openBookDetails(taskId);
+            }
+        });
+
+        // Subscribe to "new task" event
+        mViewModel.getNewTaskEvent().observe(this, e -> addNewBook());
     }
 
     public static BooksViewModel obtainViewModel(FragmentActivity activity) {

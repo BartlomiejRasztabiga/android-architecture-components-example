@@ -30,6 +30,7 @@ import pl.rasztabiga.architecturecomponents.books.BooksViewModel;
  * This creator is to showcase how to inject dependencies into ViewModels. It's not
  * actually necessary in this case, as the product ID can be passed in a public method.
  */
+@SuppressWarnings("unchecked")
 public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 
     @SuppressLint("StaticFieldLeak")
