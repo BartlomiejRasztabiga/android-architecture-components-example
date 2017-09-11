@@ -11,6 +11,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 public class Injection {
 
+    private Injection() {}
+
     public static BooksRepository provideBooksRepository(@NonNull Context context) {
         checkNotNull(context);
         return BooksRepository.getInstance(BooksRemoteDataSource.getInstance(),

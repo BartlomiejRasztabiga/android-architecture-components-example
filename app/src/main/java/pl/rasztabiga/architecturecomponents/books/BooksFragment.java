@@ -6,9 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -26,8 +23,6 @@ public class BooksFragment extends LifecycleFragment {
     private BooksViewModel mBooksViewModel;
 
     private BooksFragBinding mBooksFragBinding;
-
-    private BooksAdapter mListAdapter;
 
     public BooksFragment() {
         // Requires empty public constructor
@@ -59,16 +54,6 @@ public class BooksFragment extends LifecycleFragment {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return true;
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.books_fragment_menu, menu);
-    }
-
-    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
@@ -97,7 +82,7 @@ public class BooksFragment extends LifecycleFragment {
     private void setupListAdapter() {
         ListView listView = mBooksFragBinding.booksList;
 
-        mListAdapter = new BooksAdapter(
+        BooksAdapter mListAdapter = new BooksAdapter(
                 new ArrayList<>(0),
                 mBooksViewModel
         );

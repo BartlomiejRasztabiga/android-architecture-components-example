@@ -20,7 +20,10 @@ public final class Book {
     private boolean mCompleted;
 
     public Book(@NonNull Long id, @Nullable String title, @Nullable Long pages) {
-        this(id, title, pages, false);
+        mId = id;
+        mTitle = title;
+        mPages = pages;
+        mCompleted = false;
     }
 
     public Book(@NonNull Long id, @Nullable String title, @Nullable Long pages,

@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import pl.rasztabiga.architecturecomponents.LifecycleAppCompatActivity;
 import pl.rasztabiga.architecturecomponents.R;
 import pl.rasztabiga.architecturecomponents.ViewModelFactory;
+import pl.rasztabiga.architecturecomponents.addeditbook.AddEditBookActivity;
+import pl.rasztabiga.architecturecomponents.bookdetail.BookDetailActivity;
 import pl.rasztabiga.architecturecomponents.util.ActivityUtils;
 
 public class BooksActivity extends LifecycleAppCompatActivity implements BooksNavigator, BookItemNavigator {
@@ -85,21 +87,8 @@ public class BooksActivity extends LifecycleAppCompatActivity implements BooksNa
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
                 menuItem -> {
-                    switch (menuItem.getItemId()) {
-                        case R.id.list_navigation_menu_item:
-                            // Do nothing, we're already on that screen
-                            break;
-                        case R.id.statistics_navigation_menu_item:
-                            //TODO change
-                            Intent intent =
-                                    new Intent(BooksActivity.this, BooksActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                                    | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent);
-                            break;
-                        default:
-                            break;
-                    }
+                    //TODO Change after adding more drawer items
+
                     // Close the navigation drawer when an item is selected.
                     menuItem.setChecked(true);
                     mDrawerLayout.closeDrawers();
@@ -109,14 +98,15 @@ public class BooksActivity extends LifecycleAppCompatActivity implements BooksNa
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                // Open the navigation drawer when the home icon is selected from the toolbar.
-                mDrawerLayout.openDrawer(GravityCompat.START);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        //TODO Change after adding more menu items
+
+        if (item.getItemId() == android.R.id.home) {
+            // Open the navigation drawer when the home icon is selected from the toolbar.
+            mDrawerLayout.openDrawer(GravityCompat.START);
+            return true;
         }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -126,17 +116,15 @@ public class BooksActivity extends LifecycleAppCompatActivity implements BooksNa
 
     @Override
     public void openBookDetails(Long bookId) {
-        //TODO openBookDetails
-/*        Intent intent = new Intent(this, BookDetailActivity.class);
+        Intent intent = new Intent(this, BookDetailActivity.class);
         intent.putExtra(BookDetailActivity.EXTRA_BOOK_ID, bookId);
-        startActivityForResult(intent, AddEditBookActivity.REQUEST_CODE);*/
+        startActivityForResult(intent, AddEditBookActivity.REQUEST_CODE);
 
     }
 
     @Override
     public void addNewBook() {
-        //TODO addBook
-/*        Intent intent = new Intent(this, AddEditBookActivity.class);
-        startActivityForResult(intent, AddEditBookActivity.REQUEST_CODE);*/
+        Intent intent = new Intent(this, AddEditBookActivity.class);
+        startActivityForResult(intent, AddEditBookActivity.REQUEST_CODE);
     }
 }

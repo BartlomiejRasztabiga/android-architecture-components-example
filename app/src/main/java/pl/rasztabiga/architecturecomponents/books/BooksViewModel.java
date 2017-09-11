@@ -2,7 +2,6 @@ package pl.rasztabiga.architecturecomponents.books;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
-import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.databinding.ObservableArrayList;
@@ -41,15 +40,12 @@ public class BooksViewModel extends AndroidViewModel {
 
     private final SingleLiveEvent<Long> mOpenBookEvent = new SingleLiveEvent<>();
 
-    private final Context mContext; // To avoid leaks, this must be an Application Context.
-
     private final SingleLiveEvent<Void> mNewBookEvent = new SingleLiveEvent<>();
 
     public BooksViewModel(
             Application context,
             BooksRepository repository) {
         super(context);
-        mContext = context.getApplicationContext(); // Force use of Application Context.
         mBooksRepository = repository;
     }
 
@@ -71,10 +67,6 @@ public class BooksViewModel extends AndroidViewModel {
 
     SingleLiveEvent<Void> getNewTaskEvent() {
         return mNewBookEvent;
-    }
-
-    private void showSnackbarMessage(Integer message) {
-        mSnackbarText.setValue(message);
     }
 
     /**
