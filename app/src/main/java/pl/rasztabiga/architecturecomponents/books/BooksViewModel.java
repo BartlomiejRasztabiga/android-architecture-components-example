@@ -39,7 +39,7 @@ public class BooksViewModel extends AndroidViewModel {
 
     private final ObservableBoolean mIsDataLoadingError = new ObservableBoolean(false);
 
-    private final SingleLiveEvent<String> mOpenBookEvent = new SingleLiveEvent<>();
+    private final SingleLiveEvent<Long> mOpenBookEvent = new SingleLiveEvent<>();
 
     private final Context mContext; // To avoid leaks, this must be an Application Context.
 
@@ -65,7 +65,7 @@ public class BooksViewModel extends AndroidViewModel {
         return mSnackbarText;
     }
 
-    SingleLiveEvent<String> getOpenTaskEvent() {
+    SingleLiveEvent<Long> getOpenBookEvent() {
         return mOpenBookEvent;
     }
 
@@ -111,7 +111,6 @@ public class BooksViewModel extends AndroidViewModel {
             dataLoading.set(true);
         }
         if (forceUpdate) {
-
             mBooksRepository.refreshBooks();
         }
 

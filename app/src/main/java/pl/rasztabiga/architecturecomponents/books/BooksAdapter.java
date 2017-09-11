@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
 
 import java.util.List;
 
@@ -55,23 +54,11 @@ public class BooksAdapter extends BaseAdapter {
             binding = DataBindingUtil.getBinding(view);
         }
 
-        //TODO on book click listener
-/*        BookItemUserActionsListener userActionsListener = new BookItemUserActionsListener() {
-            @Override
-            public void onCompleteChanged(Book book, View v) {
-                boolean checked = ((CheckBox)v).isChecked();
-                mBooksViewModel.completeBook(book, checked);
-            }
-
-            @Override
-            public void onBookClicked(Book book) {
-                mBooksViewModel.getOpenTaskEvent().setValue(task.getId());
-            }
-        };*/
+        BookItemUserActionsListener userActionsListener = book -> mBooksViewModel.getOpenBookEvent().setValue(book.getId());
 
         binding.setBook(mBooks.get(position));
 
-        //binding.setListener(userActionsListener);
+        binding.setListener(userActionsListener);
 
         binding.executePendingBindings();
         return binding.getRoot();

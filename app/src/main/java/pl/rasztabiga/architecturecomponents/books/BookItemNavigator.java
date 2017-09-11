@@ -21,5 +21,5 @@ package pl.rasztabiga.architecturecomponents.books;
  */
 public interface BookItemNavigator {
 
-    void openBookDetails(String bookId);
+    void openBookDetails(Long bookId);
 }

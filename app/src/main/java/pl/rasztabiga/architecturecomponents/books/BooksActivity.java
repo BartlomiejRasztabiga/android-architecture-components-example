@@ -36,10 +36,10 @@ public class BooksActivity extends LifecycleAppCompatActivity implements BooksNa
 
         mViewModel = obtainViewModel(this);
 
-        // Subscribe to "open task" event
-        mViewModel.getOpenTaskEvent().observe(this, taskId -> {
-            if (taskId != null) {
-                openBookDetails(taskId);
+        // Subscribe to "open book" event
+        mViewModel.getOpenBookEvent().observe(this, bookId -> {
+            if (bookId != null) {
+                openBookDetails(bookId);
             }
         });
 
@@ -125,7 +125,7 @@ public class BooksActivity extends LifecycleAppCompatActivity implements BooksNa
     }
 
     @Override
-    public void openBookDetails(String bookId) {
+    public void openBookDetails(Long bookId) {
         //TODO openBookDetails
 /*        Intent intent = new Intent(this, BookDetailActivity.class);
         intent.putExtra(BookDetailActivity.EXTRA_BOOK_ID, bookId);

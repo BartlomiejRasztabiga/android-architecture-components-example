@@ -113,7 +113,8 @@ public class BooksRepository implements BooksDataSource {
     @Override
     public void completeBook(@NonNull Long bookId) {
         checkNotNull(bookId);
-        completeBook(getBookWithId(bookId));
+        Book bookToComplete = checkNotNull(getBookWithId(bookId));
+        completeBook(bookToComplete);
     }
 
     @Override

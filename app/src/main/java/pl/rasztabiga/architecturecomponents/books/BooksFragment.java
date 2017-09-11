@@ -17,7 +17,9 @@ import java.util.ArrayList;
 
 import pl.rasztabiga.architecturecomponents.R;
 import pl.rasztabiga.architecturecomponents.ScrollChildSwipeRefreshLayout;
+import pl.rasztabiga.architecturecomponents.SnackbarMessage;
 import pl.rasztabiga.architecturecomponents.databinding.BooksFragBinding;
+import pl.rasztabiga.architecturecomponents.util.SnackbarUtils;
 
 public class BooksFragment extends LifecycleFragment {
 
@@ -70,13 +72,19 @@ public class BooksFragment extends LifecycleFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        //setupSnackbar();
+        setupSnackbar();
 
         setupFab();
 
         setupListAdapter();
 
         setupRefreshLayout();
+    }
+
+    private void setupSnackbar() {
+        mBooksViewModel.getSnackbarMessage()
+                .observe(this, (SnackbarMessage.SnackbarObserver) snackbarMessageResourceId ->
+                        SnackbarUtils.showSnackbar(getView(), getString(snackbarMessageResourceId)));
     }
 
     private void setupFab() {
