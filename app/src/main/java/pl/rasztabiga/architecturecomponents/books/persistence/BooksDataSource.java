@@ -1,4 +1,4 @@
-package pl.rasztabiga.architecturecomponents.books;
+package pl.rasztabiga.architecturecomponents.books.persistence;
 
 import android.support.annotation.NonNull;
 

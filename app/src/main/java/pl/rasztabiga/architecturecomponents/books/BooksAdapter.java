@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 
 import java.util.List;
 
+import pl.rasztabiga.architecturecomponents.books.persistence.Book;
 import pl.rasztabiga.architecturecomponents.databinding.BookItemBinding;
 
 public class BooksAdapter extends BaseAdapter {

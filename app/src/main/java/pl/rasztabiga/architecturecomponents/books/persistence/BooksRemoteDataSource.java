@@ -1,35 +1,31 @@
-package pl.rasztabiga.architecturecomponents.books;
+package pl.rasztabiga.architecturecomponents.books.persistence;
 
 
 import android.support.annotation.NonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class BooksLocalDataSource implements BooksDataSource {
+public class BooksRemoteDataSource implements BooksDataSource {
 
-    private static BooksLocalDataSource instance;
+    private static BooksRemoteDataSource instance;
 
-    private BooksDao mBooksDao;
-
-    private BooksLocalDataSource(@NonNull BooksDao booksDao) {
-        mBooksDao = booksDao;
-    }
-
-    public static BooksLocalDataSource getInstance(@NonNull BooksDao booksDao) {
+    public static BooksRemoteDataSource getInstance() {
         if (instance == null) {
-            instance = new BooksLocalDataSource(booksDao);
+            instance = new BooksRemoteDataSource();
         }
+
         return instance;
     }
 
     @Override
     public void getBooks(@NonNull LoadBooksCallback callback) {
-        final List<Book> books = mBooksDao.getBooks();
-        if (books.isEmpty()) {
-            callback.onDataNotAvailable();
-        } else {
-            callback.onBooksLoaded(books);
-        }
+        // TODO Remove
+        List<Book> books = new ArrayList<>();
+        books.add(new Book(1L, "Title", 250L));
+        books.add(new Book(2L, "Second title", 800L));
+
+        callback.onBooksLoaded(books);
     }
 
     @Override

@@ -3,9 +3,9 @@ package pl.rasztabiga.architecturecomponents;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import pl.rasztabiga.architecturecomponents.books.BooksDatabase;
-import pl.rasztabiga.architecturecomponents.books.BooksLocalDataSource;
-import pl.rasztabiga.architecturecomponents.books.BooksRemoteDataSource;
+import pl.rasztabiga.architecturecomponents.books.persistence.BooksDatabase;
+import pl.rasztabiga.architecturecomponents.books.persistence.BooksLocalDataSource;
+import pl.rasztabiga.architecturecomponents.books.persistence.BooksRemoteDataSource;
 import pl.rasztabiga.architecturecomponents.books.BooksRepository;
 
 import static com.google.common.base.Preconditions.checkNotNull;

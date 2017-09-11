@@ -7,7 +7,7 @@
 
         <variable
             name="book"
-            type="pl.rasztabiga.architecturecomponents.books.Book" />
+            type="pl.rasztabiga.architecturecomponents.books.persistence.Book" />
 
         <variable
             name="listener"

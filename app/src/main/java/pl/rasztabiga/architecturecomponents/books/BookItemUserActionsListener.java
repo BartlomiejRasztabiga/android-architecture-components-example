@@ -17,6 +17,8 @@
 package pl.rasztabiga.architecturecomponents.books;
 
 
+import pl.rasztabiga.architecturecomponents.books.persistence.Book;
+
 /**
  * Listener used with data binding to process user actions.
  */

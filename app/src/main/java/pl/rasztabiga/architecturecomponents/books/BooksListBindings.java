@@ -21,6 +21,8 @@ import android.widget.ListView;
 
 import java.util.List;
 
+import pl.rasztabiga.architecturecomponents.books.persistence.Book;
+
 /**
  * Contains {@link BindingAdapter}s for the {@link Book} list.
  */

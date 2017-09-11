@@ -8,6 +8,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import pl.rasztabiga.architecturecomponents.books.persistence.Book;
+import pl.rasztabiga.architecturecomponents.books.persistence.BooksDataSource;
 import pl.rasztabiga.architecturecomponents.util.EspressoIdlingResource;
 
 import static com.google.common.base.Preconditions.checkNotNull;

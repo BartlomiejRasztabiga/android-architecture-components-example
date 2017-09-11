@@ -15,6 +15,8 @@ import pl.rasztabiga.architecturecomponents.SingleLiveEvent;
 import pl.rasztabiga.architecturecomponents.SnackbarMessage;
 import pl.rasztabiga.architecturecomponents.addeditbook.AddEditBookActivity;
 import pl.rasztabiga.architecturecomponents.bookdetail.BookDetailActivity;
+import pl.rasztabiga.architecturecomponents.books.persistence.Book;
+import pl.rasztabiga.architecturecomponents.books.persistence.BooksDataSource;
 
 /**
  * Exposes the data to be used in the book list screen.
