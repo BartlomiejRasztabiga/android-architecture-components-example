@@ -3,21 +3,33 @@ package pl.rasztabiga.architecturecomponents.books;
 
 import android.support.annotation.NonNull;
 
+import java.util.List;
+
 public class BooksLocalDataSource implements BooksDataSource {
 
     private static BooksLocalDataSource instance;
 
-    public static BooksLocalDataSource getInstance() {
-        if (instance == null) {
-            instance = new BooksLocalDataSource();
-        }
+    private BooksDao mBooksDao;
 
+    private BooksLocalDataSource(@NonNull BooksDao booksDao) {
+        mBooksDao = booksDao;
+    }
+
+    public static BooksLocalDataSource getInstance(@NonNull BooksDao booksDao) {
+        if (instance == null) {
+            instance = new BooksLocalDataSource(booksDao);
+        }
         return instance;
     }
 
     @Override
     public void getBooks(@NonNull LoadBooksCallback callback) {
-        callback.onDataNotAvailable();
+        final List<Book> books = mBooksDao.getBooks();
+        if (books.isEmpty()) {
+            callback.onDataNotAvailable();
+        } else {
+            callback.onBooksLoaded(books);
+        }
     }
 
     @Override

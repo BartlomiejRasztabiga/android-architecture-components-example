@@ -2,5 +2,5 @@ projectKey=architecture:components
 serverUrl=http://212.237.30.187:9000
 serverVersion=6.5.0.27846
 dashboardUrl=http://212.237.30.187:9000/dashboard/index/architecture:components
-ceTaskId=AV5yPDC-QZl_pT0iDQIc
-ceTaskUrl=http://212.237.30.187:9000/api/ce/task?id=AV5yPDC-QZl_pT0iDQIc
+ceTaskId=AV5yQIQDQZl_pT0iDQId
+ceTaskUrl=http://212.237.30.187:9000/api/ce/task?id=AV5yQIQDQZl_pT0iDQId
