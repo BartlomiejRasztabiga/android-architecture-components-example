@@ -1,10 +1,11 @@
 package pl.rasztabiga.architecturecomponents.books.persistence;
 
 
-import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
-import java.util.List;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class BooksLocalDataSource implements BooksDataSource {
 
@@ -25,37 +26,40 @@ public class BooksLocalDataSource implements BooksDataSource {
 
     @Override
     public void getBooks(@NonNull LoadBooksCallback callback) {
-        new AsyncTask<Void, Void, List<Book>>() {
-            @Override
-            protected List<Book> doInBackground(Void... voids) {
-                return mBooksDao.getBooks();
-            }
-
-            @Override
-            protected void onPostExecute(List<Book> books) {
-                if (books.isEmpty()) {
-                    callback.onDataNotAvailable();
-                } else {
-                    callback.onBooksLoaded(books);
-                }
-            }
-        }.execute();
+        Observable.fromCallable(() -> mBooksDao.getBooks())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(books -> {
+                    if (books.isEmpty()) {
+                        callback.onDataNotAvailable();
+                    } else {
+                        callback.onBooksLoaded(books);
+                    }
+                });
     }
 
     @Override
     public void getBook(@NonNull Long bookId, @NonNull GetBookCallback callback) {
-        throw new UnsupportedOperationException();
+        Observable.fromCallable(() -> mBooksDao.getBookById(bookId))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(book -> {
+                    if (book == null) {
+                        callback.onDataNotAvailable();
+                    } else {
+                        callback.onBookLoaded(book);
+                    }
+                });
     }
 
     @Override
     public void saveBook(@NonNull Book book) {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                mBooksDao.insertBook(book);
-                return null;
-            }
-        }.execute();
+        Observable.fromCallable(() -> {
+            mBooksDao.insertBook(book);
+            return null;
+        })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     @Override
@@ -75,13 +79,12 @@ public class BooksLocalDataSource implements BooksDataSource {
 
     @Override
     public void deleteAllBooks() {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                mBooksDao.deleteBooks();
-                return null;
-            }
-        }.execute();
+        Observable.fromCallable(() -> {
+            mBooksDao.deleteBooks();
+            return null;
+        })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     @Override

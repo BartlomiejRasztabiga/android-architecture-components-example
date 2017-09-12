@@ -21,6 +21,8 @@ import android.support.v4.widget.SwipeRefreshLayout;
 
 import pl.rasztabiga.architecturecomponents.books.BooksViewModel;
 
+
+//TODO Make this class more generic
 public class SwipeRefreshLayoutDataBinding {
 
     private SwipeRefreshLayoutDataBinding() {
