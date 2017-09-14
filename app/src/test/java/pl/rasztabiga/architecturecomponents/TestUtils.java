@@ -6,6 +6,9 @@ import android.arch.lifecycle.LifecycleRegistry;
 
 
 public class TestUtils {
+
+    private TestUtils() {}
+
     public static final LifecycleOwner TEST_OBSERVER = new LifecycleOwner() {
 
         private LifecycleRegistry mRegistry = init();

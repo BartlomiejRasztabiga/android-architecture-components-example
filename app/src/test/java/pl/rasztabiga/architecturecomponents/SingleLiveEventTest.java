@@ -33,6 +33,9 @@ public class SingleLiveEventTest {
     @Mock
     private Observer<Integer> mEventObserver;
 
+    @Mock
+    private SingleLiveEvent<Void> mVoidSingleLiveEvent = new SingleLiveEvent<>();
+
     // Defines the Android Lifecycle of an object, used to trigger different events
     private LifecycleRegistry mLifecycle;
 
@@ -40,7 +43,7 @@ public class SingleLiveEventTest {
     private SingleLiveEvent<Integer> mSingleLiveEvent = new SingleLiveEvent<>();
 
     @Before
-    public void setUpLifecycles() throws Exception {
+    public void setUpLifecycles() {
         MockitoAnnotations.initMocks(this);
 
         // Link custom lifecycle owner with the lifecyle register.
@@ -55,7 +58,7 @@ public class SingleLiveEventTest {
     }
 
     @Test
-    public void valueNotSet_onFirstOnResume() {
+    public void givenFirstOnResumeThenValueIsNotSet() {
         // On resume
         mLifecycle.handleLifecycleEvent(Lifecycle.Event.ON_RESUME);
 
@@ -64,7 +67,7 @@ public class SingleLiveEventTest {
     }
 
     @Test
-    public void singleUpdate_onSecondOnResume_updatesOnce() {
+    public void givenSingleUpdateWhenSecondOnResumeThenUpdatesOnce() {
         // After a value is set
         mSingleLiveEvent.setValue(42);
 
@@ -80,7 +83,7 @@ public class SingleLiveEventTest {
     }
 
     @Test
-    public void twoUpdates_updatesTwice() {
+    public void givenTwoUpdatesThenUpdatesTwice() {
         // After a value is set
         mSingleLiveEvent.setValue(42);
 
@@ -95,7 +98,7 @@ public class SingleLiveEventTest {
     }
 
     @Test
-    public void twoUpdates_noUpdateUntilActive() {
+    public void givenTwoUpdatesThenNoUpdateUntilActive() {
         // Set a value
         mSingleLiveEvent.setValue(42);
 
