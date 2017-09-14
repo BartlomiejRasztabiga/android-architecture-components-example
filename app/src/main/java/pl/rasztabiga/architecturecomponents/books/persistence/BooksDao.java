@@ -23,6 +23,9 @@ public interface BooksDao {
     @Update
     int updateBook(Book book);
 
+    @Query("UPDATE books SET completed = :completed WHERE book_id = :bookId")
+    void updateBookWithCompleted(Long bookId, boolean completed);
+
     @Query("DELETE FROM Books WHERE book_id = :bookId")
     int deleteBookById(Long bookId);
 

@@ -7,6 +7,8 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 public class BooksLocalDataSource implements BooksDataSource {
 
     private static BooksLocalDataSource instance;
@@ -54,6 +56,7 @@ public class BooksLocalDataSource implements BooksDataSource {
 
     @Override
     public void saveBook(@NonNull Book book) {
+        checkNotNull(book);
         Observable.fromCallable(() -> {
             mBooksDao.insertBook(book);
             return null;
@@ -64,17 +67,25 @@ public class BooksLocalDataSource implements BooksDataSource {
 
     @Override
     public void completeBook(@NonNull Book book) {
-        throw new UnsupportedOperationException();
+        checkNotNull(book);
+        Observable.fromCallable(() -> {
+            mBooksDao.updateBookWithCompleted(book.getId(), true);
+            return null;
+        })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     @Override
     public void completeBook(@NonNull Long bookId) {
-        throw new UnsupportedOperationException();
+        // Not required for the local data source because the {@link BooksRepository} handles
+        // converting from a {@code bookId} to a {@link book} using its cached data.
     }
 
     @Override
     public void refreshBooks() {
-        throw new UnsupportedOperationException();
+        // Not required because the {@link BooksRepository} handles the logic of refreshing the
+        // books from all the available data sources.
     }
 
     @Override
@@ -89,6 +100,11 @@ public class BooksLocalDataSource implements BooksDataSource {
 
     @Override
     public void deleteBooks(@NonNull Long bookId) {
-        throw new UnsupportedOperationException();
+        Observable.fromCallable(() -> {
+            mBooksDao.deleteBookById(bookId);
+            return null;
+        })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 }
