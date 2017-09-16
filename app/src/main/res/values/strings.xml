@@ -2,7 +2,6 @@
     <string name="app_name">ArchitectureComponents</string>
     <string name="navigation_view_header_title">Books</string>
     <string name="list_title">Books List</string>
-    <string name="statistics_title">Statistics</string>
     <string name="no_books_add">Add a book +</string>
 
     <string name="successfully_saved_book_message">Book saved</string>
