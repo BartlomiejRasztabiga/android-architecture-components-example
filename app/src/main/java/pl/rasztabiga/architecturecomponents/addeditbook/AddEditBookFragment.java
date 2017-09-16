@@ -15,19 +15,19 @@ import pl.rasztabiga.architecturecomponents.SnackbarMessage;
 import pl.rasztabiga.architecturecomponents.databinding.AddbookFragBinding;
 import pl.rasztabiga.architecturecomponents.util.SnackbarUtils;
 
-public class AddBookFragment extends Fragment {
+public class AddEditBookFragment extends Fragment {
 
     public static final String ARGUMENT_EDIT_BOOK_ID = "EDIT_BOOK_ID";
 
-    private AddBookViewModel mViewModel;
+    private AddEditBookViewModel mViewModel;
 
     private AddbookFragBinding mViewDataBinding;
 
-    public static AddBookFragment newInstance() {
-        return new AddBookFragment();
+    public static AddEditBookFragment newInstance() {
+        return new AddEditBookFragment();
     }
 
-    public AddBookFragment() {
+    public AddEditBookFragment() {
         // Required empty public constructor
     }
 
@@ -65,7 +65,7 @@ public class AddBookFragment extends Fragment {
             mViewDataBinding = AddbookFragBinding.bind(root);
         }
 
-        mViewModel = AddBookActivity.obtainViewModel(getActivity());
+        mViewModel = AddEditEditBookActivity.obtainViewModel(getActivity());
 
         mViewDataBinding.setViewmodel(mViewModel);
 

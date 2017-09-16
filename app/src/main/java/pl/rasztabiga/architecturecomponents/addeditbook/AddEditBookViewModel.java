@@ -13,7 +13,7 @@ import pl.rasztabiga.architecturecomponents.books.BooksRepository;
 import pl.rasztabiga.architecturecomponents.books.persistence.Book;
 import pl.rasztabiga.architecturecomponents.books.persistence.BooksDataSource;
 
-public class AddBookViewModel extends AndroidViewModel implements BooksDataSource.GetBookCallback {
+public class AddEditBookViewModel extends AndroidViewModel implements BooksDataSource.GetBookCallback {
 
     public final ObservableField<String> title = new ObservableField<>();
 
@@ -36,8 +36,8 @@ public class AddBookViewModel extends AndroidViewModel implements BooksDataSourc
 
     private boolean mBookCompleted = false;
 
-    public AddBookViewModel(Application context,
-                            BooksRepository booksRepository) {
+    public AddEditBookViewModel(Application context,
+                                BooksRepository booksRepository) {
         super(context);
         mBooksRepository = booksRepository;
     }

@@ -23,7 +23,7 @@
 
         <variable
             name="viewmodel"
-            type="pl.rasztabiga.architecturecomponents.addeditbook.AddBookViewModel"/>
+            type="pl.rasztabiga.architecturecomponents.addeditbook.AddEditBookViewModel"/>
     </data>
 
     <pl.rasztabiga.architecturecomponents.ScrollChildSwipeRefreshLayout

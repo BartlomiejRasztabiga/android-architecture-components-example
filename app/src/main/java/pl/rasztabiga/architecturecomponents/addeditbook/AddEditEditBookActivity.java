@@ -16,7 +16,7 @@ import pl.rasztabiga.architecturecomponents.util.ActivityUtils;
 /**
  * Displays an add book screen.
  */
-public class AddBookActivity extends AppCompatActivity implements AddBookNavigator {
+public class AddEditEditBookActivity extends AppCompatActivity implements AddEditBookNavigator {
 
     public static final int REQUEST_CODE = 1;
 
@@ -49,7 +49,7 @@ public class AddBookActivity extends AppCompatActivity implements AddBookNavigat
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
-        AddBookFragment addEditTaskFragment = obtainViewFragment();
+        AddEditBookFragment addEditTaskFragment = obtainViewFragment();
 
         ActivityUtils.replaceFragmentInActivity(getSupportFragmentManager(),
                 addEditTaskFragment, R.id.contentFrame);
@@ -58,34 +58,34 @@ public class AddBookActivity extends AppCompatActivity implements AddBookNavigat
     }
 
     private void subscribeToNavigationChanges() {
-        AddBookViewModel viewModel = obtainViewModel(this);
+        AddEditBookViewModel viewModel = obtainViewModel(this);
 
         // The activity observes the navigation events in the ViewModel
-        viewModel.getBookUpdatedEvent().observe(this, e -> AddBookActivity.this.onBookSaved());
+        viewModel.getBookUpdatedEvent().observe(this, e -> AddEditEditBookActivity.this.onBookSaved());
     }
 
-    public static AddBookViewModel obtainViewModel(FragmentActivity activity) {
+    public static AddEditBookViewModel obtainViewModel(FragmentActivity activity) {
         // Use a Factory to inject dependencies into the ViewModel
         ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
 
-        return ViewModelProviders.of(activity, factory).get(AddBookViewModel.class);
+        return ViewModelProviders.of(activity, factory).get(AddEditBookViewModel.class);
     }
 
     @NonNull
-    private AddBookFragment obtainViewFragment() {
+    private AddEditBookFragment obtainViewFragment() {
         // View Fragment
-        AddBookFragment addBookFragment = (AddBookFragment) getSupportFragmentManager()
+        AddEditBookFragment addEditBookFragment = (AddEditBookFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.contentFrame);
 
-        if (addBookFragment == null) {
-            addBookFragment = AddBookFragment.newInstance();
+        if (addEditBookFragment == null) {
+            addEditBookFragment = AddEditBookFragment.newInstance();
 
             // Send the task ID to the fragment
             Bundle bundle = new Bundle();
-            bundle.putLong(AddBookFragment.ARGUMENT_EDIT_BOOK_ID,
-                    getIntent().getLongExtra(AddBookFragment.ARGUMENT_EDIT_BOOK_ID, 0L));
-            addBookFragment.setArguments(bundle);
+            bundle.putLong(AddEditBookFragment.ARGUMENT_EDIT_BOOK_ID,
+                    getIntent().getLongExtra(AddEditBookFragment.ARGUMENT_EDIT_BOOK_ID, 0L));
+            addEditBookFragment.setArguments(bundle);
         }
-        return addBookFragment;
+        return addEditBookFragment;
     }
 }
