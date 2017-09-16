@@ -16,7 +16,7 @@ public class BooksRemoteDataSource implements BooksDataSource {
 
     private static BooksRemoteDataSource instance;
 
-    private Retrofit retrofit;
+    private BooksRestApi restApi;
 
     public static BooksRemoteDataSource getInstance() {
         if (instance == null) {
@@ -26,15 +26,16 @@ public class BooksRemoteDataSource implements BooksDataSource {
     }
 
     private BooksRemoteDataSource() {
-        this.retrofit = new Retrofit.Builder()
+        Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://59bd098b5037eb00117b4b17.mockapi.io/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
+        this.restApi = retrofit.create(BooksRestApi.class);
     }
 
     @Override
     public void getBooks(@NonNull LoadBooksCallback callback) {
-        BooksRestApi restApi = retrofit.create(BooksRestApi.class);
         Call<List<Book>> booksCall = restApi.getBooks();
 
         Observable.fromCallable(() -> booksCall.execute().body())
@@ -50,7 +51,12 @@ public class BooksRemoteDataSource implements BooksDataSource {
 
     @Override
     public void saveBook(@NonNull Book book) {
-        throw new UnsupportedOperationException();
+        Call<Book> createBookCall = restApi.createBook(book);
+
+        Observable.fromCallable(() -> createBookCall.execute().body())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
     }
 
     @Override

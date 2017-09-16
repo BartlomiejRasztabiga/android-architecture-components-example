@@ -59,10 +59,11 @@
                 <EditText
                     android:id="@+id/add_book_pages"
                     android:layout_width="match_parent"
-                    android:layout_height="350dp"
-                    android:gravity="top"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
                     android:hint="@string/pages_hint"
-                    android:text="@={viewmodel.pages}"/>
+                    android:text="@={viewmodel.pages}"
+                    android:inputType="number" />
 
             </LinearLayout>
         </ScrollView>
