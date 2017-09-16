@@ -8,4 +8,5 @@
     <string name="successfully_saved_book_message">Book saved</string>
     <string name="successfully_deleted_book_message">Book was deleted</string>
     <string name="successfully_added_book_message">Book added</string>
+    <string name="logo">Logo</string>
 </resources>
