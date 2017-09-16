@@ -59,10 +59,11 @@ public class BooksLocalDataSource implements BooksDataSource {
         checkNotNull(book);
         Observable.fromCallable(() -> {
             mBooksDao.insertBook(book);
-            return null;
+            return Observable.empty();
         })
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
     }
 
     @Override
@@ -70,10 +71,11 @@ public class BooksLocalDataSource implements BooksDataSource {
         checkNotNull(book);
         Observable.fromCallable(() -> {
             mBooksDao.updateBookWithCompleted(book.getId(), true);
-            return null;
+            return Observable.empty();
         })
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
     }
 
     @Override
@@ -92,19 +94,21 @@ public class BooksLocalDataSource implements BooksDataSource {
     public void deleteAllBooks() {
         Observable.fromCallable(() -> {
             mBooksDao.deleteBooks();
-            return null;
+            return Observable.empty();
         })
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
     }
 
     @Override
     public void deleteBooks(@NonNull Long bookId) {
         Observable.fromCallable(() -> {
             mBooksDao.deleteBookById(bookId);
-            return null;
+            return Observable.empty();
         })
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
     }
 }
