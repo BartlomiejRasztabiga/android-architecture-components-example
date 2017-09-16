@@ -16,61 +16,68 @@ public final class Book {
     @NonNull
     @PrimaryKey
     @ColumnInfo(name = "book_id")
-    private final Long mId;
+    private final Long id;
 
     @Nullable
     @ColumnInfo(name = "title")
-    private final String mTitle;
+    private final String title;
 
     @Nullable
     @ColumnInfo(name = "pages")
-    private final Long mPages;
+    private final Long pages;
 
     @ColumnInfo(name = "completed")
-    private boolean mCompleted;
+    private boolean completed;
+
+    @Ignore
+    public Book() {
+        id = 0L;
+        title = "";
+        pages = 0L;
+    }
 
     @Ignore
     public Book(@NonNull Long id, @Nullable String title, @Nullable Long pages) {
-        mId = id;
-        mTitle = title;
-        mPages = pages;
-        mCompleted = false;
+        this.id = id;
+        this.title = title;
+        this.pages = pages;
+        completed = false;
     }
 
     public Book(@NonNull Long id, @Nullable String title, @Nullable Long pages,
                 boolean completed) {
-        mId = id;
-        mTitle = title;
-        mPages = pages;
-        mCompleted = completed;
+        this.id = id;
+        this.title = title;
+        this.pages = pages;
+        this.completed = completed;
     }
 
     @NonNull
     public Long getId() {
-        return mId;
+        return id;
     }
 
     @Nullable
     public String getTitle() {
-        return mTitle;
+        return title;
     }
 
     @Nullable
     public Long getPages() {
-        return mPages;
+        return pages;
     }
 
     @NonNull
     public boolean isCompleted() {
-        return mCompleted;
+        return completed;
     }
 
     public void setCompleted(boolean completed) {
-        mCompleted = completed;
+        this.completed = completed;
     }
 
     public boolean isActive() {
-        return !mCompleted;
+        return !completed;
     }
 
     @Override
@@ -78,18 +85,23 @@ public final class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book task = (Book) o;
-        return Objects.equal(mId, task.mId) &&
-                Objects.equal(mTitle, task.mTitle) &&
-                Objects.equal(mPages, task.mPages);
+        return Objects.equal(id, task.id) &&
+                Objects.equal(title, task.title) &&
+                Objects.equal(pages, task.pages);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(mId, mTitle, mPages);
+        return Objects.hashCode(id, title, pages);
     }
 
     @Override
     public String toString() {
-        return "Book with title " + mTitle;
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", pages=" + pages +
+                ", completed=" + completed +
+                '}';
     }
 }
