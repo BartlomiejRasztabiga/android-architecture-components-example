@@ -19,5 +19,6 @@
             </intent-filter>
         </activity>
         <activity android:name="pl.rasztabiga.architecturecomponents.addeditbook.AddEditEditBookActivity" />
+        <activity android:name="pl.rasztabiga.architecturecomponents.bookdetail.BookDetailActivity"/>
     </application>
 </manifest>
