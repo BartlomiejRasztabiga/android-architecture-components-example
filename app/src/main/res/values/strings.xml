@@ -8,4 +8,9 @@
     <string name="successfully_deleted_book_message">Book was deleted</string>
     <string name="successfully_added_book_message">Book added</string>
     <string name="logo">Logo</string>
+    <string name="empty_book_message">Book cannot be empty</string>
+    <string name="edit_book">Edit book</string>
+    <string name="add_book">New book</string>
+    <string name="title_hint">Title</string>
+    <string name="pages_hint">Number of pages</string>
 </resources>

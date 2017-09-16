@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.google.common.base.Objects;
+import com.google.common.base.Strings;
 
 //TODO Add lombok
 @Entity(tableName = "books")
@@ -34,6 +35,13 @@ public final class Book {
         id = 0L;
         title = "";
         pages = 0L;
+    }
+
+    @Ignore
+    public Book(@Nullable String title, @Nullable Long pages) {
+        this.id = 0L;
+        this.title = title;
+        this.pages = pages;
     }
 
     @Ignore
@@ -78,6 +86,11 @@ public final class Book {
 
     public boolean isActive() {
         return !completed;
+    }
+
+    public boolean isEmpty() {
+        return Strings.isNullOrEmpty(title) &&
+                (pages == null || pages == 0L);
     }
 
     @Override

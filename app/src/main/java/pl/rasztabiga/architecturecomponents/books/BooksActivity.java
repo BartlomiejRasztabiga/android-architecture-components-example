@@ -9,17 +9,17 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import pl.rasztabiga.architecturecomponents.LifecycleAppCompatActivity;
 import pl.rasztabiga.architecturecomponents.R;
 import pl.rasztabiga.architecturecomponents.ViewModelFactory;
 import pl.rasztabiga.architecturecomponents.addeditbook.AddEditBookActivity;
 import pl.rasztabiga.architecturecomponents.bookdetail.BookDetailActivity;
 import pl.rasztabiga.architecturecomponents.util.ActivityUtils;
 
-public class BooksActivity extends LifecycleAppCompatActivity implements BooksNavigator, BookItemNavigator {
+public class BooksActivity extends AppCompatActivity implements BooksNavigator, BookItemNavigator {
 
     private DrawerLayout mDrawerLayout;
 

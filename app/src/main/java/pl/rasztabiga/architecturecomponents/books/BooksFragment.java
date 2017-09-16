@@ -1,9 +1,9 @@
 package pl.rasztabiga.architecturecomponents.books;
 
-import android.arch.lifecycle.LifecycleFragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +18,7 @@ import pl.rasztabiga.architecturecomponents.SnackbarMessage;
 import pl.rasztabiga.architecturecomponents.databinding.BooksFragBinding;
 import pl.rasztabiga.architecturecomponents.util.SnackbarUtils;
 
-public class BooksFragment extends LifecycleFragment {
+public class BooksFragment extends Fragment {
 
     private BooksViewModel mBooksViewModel;
 
