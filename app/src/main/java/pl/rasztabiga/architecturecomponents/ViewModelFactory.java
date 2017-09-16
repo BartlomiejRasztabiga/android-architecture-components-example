@@ -22,7 +22,7 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.VisibleForTesting;
 
-import pl.rasztabiga.architecturecomponents.addeditbook.AddEditBookViewModel;
+import pl.rasztabiga.architecturecomponents.addeditbook.AddBookViewModel;
 import pl.rasztabiga.architecturecomponents.books.BooksViewModel;
 
 /**
@@ -65,8 +65,8 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
         if (modelClass.isAssignableFrom(BooksViewModel.class)) {
             //noinspection unchecked
             return (T) new BooksViewModel(mApplication, Injection.provideBooksRepository(mApplication.getApplicationContext()));
-        } else if (modelClass.isAssignableFrom(AddEditBookViewModel.class)) {
-            return (T) new AddEditBookViewModel(mApplication, Injection.provideBooksRepository(mApplication.getApplicationContext()));
+        } else if (modelClass.isAssignableFrom(AddBookViewModel.class)) {
+            return (T) new AddBookViewModel(mApplication, Injection.provideBooksRepository(mApplication.getApplicationContext()));
         }
 
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());

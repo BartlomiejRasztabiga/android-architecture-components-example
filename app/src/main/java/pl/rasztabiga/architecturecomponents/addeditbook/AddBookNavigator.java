@@ -1,6 +1,6 @@
 package pl.rasztabiga.architecturecomponents.addeditbook;
 
-interface AddEditBookNavigator {
+interface AddBookNavigator {
 
     void onBookSaved();
 }

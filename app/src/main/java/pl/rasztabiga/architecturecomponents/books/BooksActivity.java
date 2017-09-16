@@ -15,7 +15,7 @@ import android.view.MenuItem;
 
 import pl.rasztabiga.architecturecomponents.R;
 import pl.rasztabiga.architecturecomponents.ViewModelFactory;
-import pl.rasztabiga.architecturecomponents.addeditbook.AddEditBookActivity;
+import pl.rasztabiga.architecturecomponents.addeditbook.AddBookActivity;
 import pl.rasztabiga.architecturecomponents.bookdetail.BookDetailActivity;
 import pl.rasztabiga.architecturecomponents.util.ActivityUtils;
 
@@ -118,13 +118,13 @@ public class BooksActivity extends AppCompatActivity implements BooksNavigator, 
     public void openBookDetails(Long bookId) {
         Intent intent = new Intent(this, BookDetailActivity.class);
         intent.putExtra(BookDetailActivity.EXTRA_BOOK_ID, bookId);
-        startActivityForResult(intent, AddEditBookActivity.REQUEST_CODE);
+        startActivityForResult(intent, AddBookActivity.REQUEST_CODE);
 
     }
 
     @Override
     public void addNewBook() {
-        Intent intent = new Intent(this, AddEditBookActivity.class);
-        startActivityForResult(intent, AddEditBookActivity.REQUEST_CODE);
+        Intent intent = new Intent(this, AddBookActivity.class);
+        startActivityForResult(intent, AddBookActivity.REQUEST_CODE);
     }
 }

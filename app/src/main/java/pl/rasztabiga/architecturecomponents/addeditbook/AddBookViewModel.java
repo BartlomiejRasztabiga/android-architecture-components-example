@@ -13,11 +13,11 @@ import pl.rasztabiga.architecturecomponents.books.BooksRepository;
 import pl.rasztabiga.architecturecomponents.books.persistence.Book;
 import pl.rasztabiga.architecturecomponents.books.persistence.BooksDataSource;
 
-public class AddEditBookViewModel extends AndroidViewModel implements BooksDataSource.GetBookCallback {
+public class AddBookViewModel extends AndroidViewModel implements BooksDataSource.GetBookCallback {
 
     public final ObservableField<String> title = new ObservableField<>();
 
-    public final ObservableField<String> pages = new ObservableField<>();
+    public final ObservableField<Long> pages = new ObservableField<>();
 
     public final ObservableBoolean dataLoading = new ObservableBoolean(false);
 
@@ -36,8 +36,8 @@ public class AddEditBookViewModel extends AndroidViewModel implements BooksDataS
 
     private boolean mBookCompleted = false;
 
-    public AddEditBookViewModel(Application context,
-                                BooksRepository booksRepository) {
+    public AddBookViewModel(Application context,
+                            BooksRepository booksRepository) {
         super(context);
         mBooksRepository = booksRepository;
     }
@@ -66,7 +66,7 @@ public class AddEditBookViewModel extends AndroidViewModel implements BooksDataS
     @Override
     public void onBookLoaded(Book book) {
         title.set(book.getTitle());
-        pages.set(String.valueOf(book.getPages()));
+        pages.set(book.getPages());
         mBookCompleted = book.isCompleted();
         dataLoading.set(false);
         mIsDataLoaded = true;
@@ -82,13 +82,13 @@ public class AddEditBookViewModel extends AndroidViewModel implements BooksDataS
 
     // Called when clicking on fab.
     void saveBook() {
-        Book book = new Book(title.get(), Long.valueOf(pages.get()));
+        Book book = new Book(title.get(), pages.get());
         if (book.isEmpty()) {
             mSnackbarText.setValue(R.string.empty_book_message);
             return;
         }
         if (!mIsNewBook && mBookId != null) {
-            book = new Book(mBookId, title.get(), Long.valueOf(pages.get()), mBookCompleted);
+            book = new Book(mBookId, title.get(), pages.get(), mBookCompleted);
         }
 
         updateBook(book);
@@ -105,5 +105,8 @@ public class AddEditBookViewModel extends AndroidViewModel implements BooksDataS
     private void updateBook(Book book) {
         mBooksRepository.saveBook(book);
         mBookUpdated.call();
+
+        // Refresh to keep data consistent
+        mBooksRepository.refreshBooks();
     }
 }
