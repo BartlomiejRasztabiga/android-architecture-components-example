@@ -65,7 +65,7 @@ public class AddEditBookFragment extends Fragment {
             mViewDataBinding = AddbookFragBinding.bind(root);
         }
 
-        mViewModel = AddEditEditBookActivity.obtainViewModel(getActivity());
+        mViewModel = AddEditBookActivity.obtainViewModel(getActivity());
 
         mViewDataBinding.setViewmodel(mViewModel);
 

@@ -1,6 +1,5 @@
 package pl.rasztabiga.architecturecomponents.bookdetail;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,9 +13,11 @@ import android.support.v7.widget.Toolbar;
 import pl.rasztabiga.architecturecomponents.R;
 import pl.rasztabiga.architecturecomponents.ViewModelFactory;
 import pl.rasztabiga.architecturecomponents.addeditbook.AddEditBookFragment;
+import pl.rasztabiga.architecturecomponents.addeditbook.AddEditBookActivity;
 import pl.rasztabiga.architecturecomponents.util.ActivityUtils;
 
-import static pl.rasztabiga.architecturecomponents.addeditbook.AddEditEditBookActivity.ADD_EDIT_RESULT_OK;
+import static pl.rasztabiga.architecturecomponents.addeditbook.AddEditBookActivity.ADD_EDIT_RESULT_OK;
+import static pl.rasztabiga.architecturecomponents.bookdetail.BookDetailFragment.REQUEST_EDIT_BOOK;
 
 /**
  * Displays book details screen.
@@ -42,7 +43,7 @@ public class BookDetailActivity extends AppCompatActivity implements BookDetailN
 
         mBookViewModel = obtainViewModel(this);
 
-        subscribeToNavigationChanges(mTaskViewModel);
+        subscribeToNavigationChanges(mBookViewModel);
     }
 
     private void setupToolbar() {
@@ -63,7 +64,7 @@ public class BookDetailActivity extends AppCompatActivity implements BookDetailN
     @NonNull
     private BookDetailFragment findOrCreateViewFragment() {
         // Get the requested book id
-        String bookId = getIntent().getStringExtra(EXTRA_BOOK_ID);
+        Long bookId = getIntent().getLongExtra(EXTRA_BOOK_ID, 0L);
 
         BookDetailFragment bookDetailFragment = (BookDetailFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.contentFrame);
@@ -84,8 +85,8 @@ public class BookDetailActivity extends AppCompatActivity implements BookDetailN
 
     private void subscribeToNavigationChanges(BookDetailViewModel viewModel) {
         // The activity observes the navigation commands in the ViewModel
-        viewModel.getEditBookCommand().observe(this, (Observer<Void>) e -> BookDetailActivity.this.onStartEditBook());
-        viewModel.getDeleteBookCommand().observe(this, (Observer<Void>) e -> BookDetailActivity.this.onBookDeleted());
+        viewModel.getEditBookCommand().observe(this, e -> BookDetailActivity.this.onStartEditBook());
+        viewModel.getDeleteBookCommand().observe(this, e -> BookDetailActivity.this.onBookDeleted());
     }
 
     @Override

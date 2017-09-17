@@ -84,10 +84,6 @@ public final class Book {
         this.completed = completed;
     }
 
-    public boolean isActive() {
-        return !completed;
-    }
-
     public boolean isEmpty() {
         return Strings.isNullOrEmpty(title) &&
                 (pages == null || pages == 0L);

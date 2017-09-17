@@ -198,9 +198,9 @@ public class BooksRepository implements BooksDataSource {
     }
 
     @Override
-    public void deleteBooks(@NonNull Long bookId) {
-        mBooksRemoteDataSource.deleteBooks(checkNotNull(bookId));
-        mBooksLocalDataSource.deleteBooks(checkNotNull(bookId));
+    public void deleteBook(@NonNull Long bookId) {
+        mBooksRemoteDataSource.deleteBook(checkNotNull(bookId));
+        mBooksLocalDataSource.deleteBook(checkNotNull(bookId));
 
         mCachedBooks.remove(bookId);
     }

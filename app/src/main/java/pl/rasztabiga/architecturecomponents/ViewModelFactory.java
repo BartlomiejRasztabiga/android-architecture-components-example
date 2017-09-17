@@ -23,6 +23,7 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.VisibleForTesting;
 
 import pl.rasztabiga.architecturecomponents.addeditbook.AddEditBookViewModel;
+import pl.rasztabiga.architecturecomponents.bookdetail.BookDetailViewModel;
 import pl.rasztabiga.architecturecomponents.books.BooksViewModel;
 
 /**

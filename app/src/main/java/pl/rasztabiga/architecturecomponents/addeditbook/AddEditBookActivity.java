@@ -16,7 +16,7 @@ import pl.rasztabiga.architecturecomponents.util.ActivityUtils;
 /**
  * Displays an add book screen.
  */
-public class AddEditEditBookActivity extends AppCompatActivity implements AddEditBookNavigator {
+public class AddEditBookActivity extends AppCompatActivity implements AddEditBookNavigator {
 
     public static final int REQUEST_CODE = 1;
 
@@ -61,7 +61,7 @@ public class AddEditEditBookActivity extends AppCompatActivity implements AddEdi
         AddEditBookViewModel viewModel = obtainViewModel(this);
 
         // The activity observes the navigation events in the ViewModel
-        viewModel.getBookUpdatedEvent().observe(this, e -> AddEditEditBookActivity.this.onBookSaved());
+        viewModel.getBookUpdatedEvent().observe(this, e -> AddEditBookActivity.this.onBookSaved());
     }
 
     public static AddEditBookViewModel obtainViewModel(FragmentActivity activity) {

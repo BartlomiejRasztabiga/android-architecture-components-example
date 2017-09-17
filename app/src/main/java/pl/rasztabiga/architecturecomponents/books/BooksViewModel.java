@@ -13,7 +13,7 @@ import java.util.List;
 import pl.rasztabiga.architecturecomponents.R;
 import pl.rasztabiga.architecturecomponents.SingleLiveEvent;
 import pl.rasztabiga.architecturecomponents.SnackbarMessage;
-import pl.rasztabiga.architecturecomponents.addeditbook.AddEditEditBookActivity;
+import pl.rasztabiga.architecturecomponents.addeditbook.AddEditBookActivity;
 import pl.rasztabiga.architecturecomponents.bookdetail.BookDetailActivity;
 import pl.rasztabiga.architecturecomponents.books.persistence.Book;
 import pl.rasztabiga.architecturecomponents.books.persistence.BooksDataSource;
@@ -79,12 +79,12 @@ public class BooksViewModel extends AndroidViewModel {
     }
 
     void handleActivityResult(int requestCode, int resultCode) {
-        if (AddEditEditBookActivity.REQUEST_CODE == requestCode) {
+        if (AddEditBookActivity.REQUEST_CODE == requestCode) {
             switch (resultCode) {
                 case BookDetailActivity.EDIT_RESULT_OK:
                     mSnackbarText.setValue(R.string.successfully_saved_book_message);
                     break;
-                case AddEditEditBookActivity.ADD_EDIT_RESULT_OK:
+                case AddEditBookActivity.ADD_EDIT_RESULT_OK:
                     mSnackbarText.setValue(R.string.successfully_added_book_message);
                     break;
                 case BookDetailActivity.DELETE_RESULT_OK:

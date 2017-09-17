@@ -102,7 +102,7 @@ public class BooksLocalDataSource implements BooksDataSource {
     }
 
     @Override
-    public void deleteBooks(@NonNull Long bookId) {
+    public void deleteBook(@NonNull Long bookId) {
         Observable.fromCallable(() -> {
             mBooksDao.deleteBookById(bookId);
             return Observable.empty();

@@ -61,26 +61,40 @@ public class BooksRemoteDataSource implements BooksDataSource {
 
     @Override
     public void completeBook(@NonNull Book book) {
-        throw new UnsupportedOperationException();
+        Call<Book> completeBookCall = restApi.updateBook(book.getId(), book);
+
+        Observable.fromCallable(() -> completeBookCall.execute().body())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
     }
 
     @Override
     public void completeBook(@NonNull Long bookId) {
-        throw new UnsupportedOperationException();
+        // Not required for the remote data source because the {@link BooksRepository} handles
+        // converting from a {@code bookId} to a {@link book} using its cached data.
     }
 
     @Override
     public void refreshBooks() {
-        throw new UnsupportedOperationException();
+        // Not required because the {@link BooksRepository} handles the logic of refreshing the
+        // books from all the available data sources.
     }
 
     @Override
     public void deleteAllBooks() {
-        throw new UnsupportedOperationException();
+        // throw new UnsupportedOperationException();
+
+        // Cannot be handled by mockapi.io
     }
 
     @Override
-    public void deleteBooks(@NonNull Long bookId) {
-        throw new UnsupportedOperationException();
+    public void deleteBook(@NonNull Long bookId) {
+        Call<Book> deleteBookCall = restApi.deleteBook(bookId);
+
+        Observable.fromCallable(() -> deleteBookCall.execute().body())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
     }
 }

@@ -34,5 +34,5 @@ public interface BooksDataSource {
 
     void deleteAllBooks();
 
-    void deleteBooks(@NonNull Long bookId);
+    void deleteBook(@NonNull Long bookId);
 }

@@ -18,7 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="pl.rasztabiga.architecturecomponents.addeditbook.AddEditEditBookActivity" />
+        <activity android:name="pl.rasztabiga.architecturecomponents.addeditbook.AddEditBookActivity" />
         <activity android:name="pl.rasztabiga.architecturecomponents.bookdetail.BookDetailActivity"/>
     </application>
 </manifest>
